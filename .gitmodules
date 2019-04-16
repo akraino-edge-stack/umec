@@ -1,0 +1,3 @@
+[submodule "Demos/ONS_NA_2019/webserver/static"]
+	path = Demos/ONS_NA_2019/webserver/static
+	url = https://github.com/dhg/Skeleton.git
