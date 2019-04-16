@@ -1,0 +1,25 @@
+<html><head> 
+	<meta charset = "UTF-8"> 
+	<link rel="stylesheet" type="text/css" href="/css/normalize.css"/> 
+	<link rel="stylesheet" type="text/css" href="/css/skeleton.css"/> 
+        <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+
+
+<H1> Web interface to local InfluxDB </H1>
+
+<p>
+This is a web interface on a locally running InfluxDB instance which can be accessed through http://127.0.0.1:8086 with no security. The easiest way to get InfluxDB up and running is to use a docker container. 
+You can either browse the available databases and measurements by clicking, or write the url directly.
+</p>
+
+<p>
+Available databases are:
+<ul>
+{% for s in dbs %}
+    <li> <A href="/influx/{{ s }}"> {{ s }} </A>  </li>
+{% endfor %}
+</ul>
+</p>
+</body>
