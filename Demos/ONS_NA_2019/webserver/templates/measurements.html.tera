@@ -1,0 +1,30 @@
+<html><head> 
+	<meta charset = "UTF-8"> 
+	<link rel="stylesheet" type="text/css" href="/css/normalize.css"/> 
+	<link rel="stylesheet" type="text/css" href="/css/skeleton.css"/> 
+        <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<body>
+<H1> Measurements in database {{ db }}  </H1>
+
+<table class="u-full-width">
+  <thead>
+    <tr>
+      <th> Measurement </th>
+      <th> All data    </th>
+      <th> Last 5 minutes </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in measurements %}
+      <tr>
+          <td> {{ i  }}       </td>
+          <td> <A href="/influx/{{ db }}/{{ i }}"> Show all </A> </td>
+          <td> <A href="/influx/{{ db }}/{{ i }}/5m"> Last 5 minutes </A> </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</body>
+</html
