@@ -1,0 +1,34 @@
+This part of the demo code is a web server written in Rust that uses
+
+- The Rocket web server 
+- Tera templates
+- Skeleton style sheets
+
+and the related Rust packages. It reads from an InfluxDB and allows to browse
+it, to make it easy to find and show the information. The InfluxDB needs to
+be running locally on port 8086, although it would be easy to change that.
+Easiest way to get started with InfluxDB is to run it in a container:
+
+docker run -p 8086:8086 influxdb --name influx
+
+The full story is in https://hub.docker.com/_/influxdb.
+
+The web server is serving on port 8000. Again, this would be easy to change in
+the code.
+
+For a test run, you can start the web server (cargo run), launch an InfluxDB
+and create a test database with 
+
+curl -i -XPOST http://localhost:8086/query --data-urlencode q=CREATE DATABASE mydb
+
+Then you should see the DB in http://localhost:8000/
+
+To see some data, you can run a script like the following (in zsh)
+
+for i in {0..100}; do echo $i; curl -i -XPOST http://127.0.0.1:8086/write\?db=mydb --data-binary "confidence,car_plate=SED-12,region=eu value=0.999"; sleep 1; done
+
+and go to http://localhost:8086/influx/mydb/confidence/10s
+
+This shows the last 10 seconds of measurements, which should be close to 10
+measurements.
+

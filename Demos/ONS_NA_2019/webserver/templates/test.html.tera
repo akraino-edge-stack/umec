@@ -1,0 +1,16 @@
+<html><head> 
+	<meta charset = "UTF-8"> 
+	<link rel="stylesheet" type="text/css" href="css/style.css" /> 
+        <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+<body>
+<H1> Web interface to local InfluxDB </H1>
+
+Available databases are:
+<ul>
+{% for s in dbs %}
+    <li> {{ s }}  </li>
+{% endfor %}
+</ul>
+</body>
+</html>
