@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html><head> 
+	<meta charset = "UTF-8"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> µMEC </title>
+	<link rel="stylesheet" type="text/css" href="/css/bulma.css"/> 
+        <link rel="icon" type="image/png" href="/images/favicon.ico">
+	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
+
+<section class="section">
+	<div class="container">
+		<H1 class="title"> Welcome to µMEC! </H1>
+
+<p class="subtitle">
+My OS release is 
+</p>
+
+<p>
+<ul class="menu-list">
+{% for i in os_release %}
+<li> {{ i }}
+</li>
+{% endfor %}
+</ul>
+</p>
+
+<p class="subtitle">
+Podman says the following:
+</p>
+
+<p>
+<ul>
+{% for i in podman_info %}
+<li> {{ i }}
+</li>
+{% endfor %}
+Happy to meet you!
+</ul>
+</p>
+
+</body>
+</html>
