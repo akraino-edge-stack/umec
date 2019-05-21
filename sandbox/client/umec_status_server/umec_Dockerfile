@@ -1,0 +1,16 @@
+FROM localhost/umec_builder as builder
+
+FROM docker.io/opensuse/tumbleweed
+COPY --from=builder /app /app
+
+RUN mkdir /app/templates
+RUN mkdir /app/static
+
+WORKDIR /app
+
+COPY ./templates/ /app/templates
+COPY ./static/ /app/static
+
+EXPOSE 3000
+
+CMD /app/umec_status_server 3000
