@@ -1,0 +1,49 @@
+##############################################################################
+# Copyright (c) 2019 Nokia.                                                  #
+#                                                                            #
+# Licensed under the Apache License, Version 2.0 (the "License"); you may    #
+# not use this file except in compliance with the License.                   #
+#                                                                            #
+# You may obtain a copy of the License at                                    #
+#       http://www.apache.org/licenses/LICENSE-2.0                           #
+#                                                                            #
+# Unless required by applicable law or agreed to in writing, software        #
+# distributed under the License is distributed on an "AS IS" BASIS, WITHOUT  #
+# WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.           #
+# See the License for the specific language governing permissions and        #
+# limitations under the License.                                             #
+##############################################################################
+# https://gist.github.com/ihrwein/1f11efc568601055f2c78eb471a41d99
+
+
+FROM docker.io/opensuse/tumbleweed
+
+RUN zypper --non-interactive install curl gcc
+
+RUN curl --proto '=https' -sSf  https://sh.rustup.rs | sh -s -- -y --default-toolchain nightly-x86_64-unknown-linux-gnu
+
+ONBUILD RUN mkdir -p /source/src
+ONBUILD WORKDIR /source
+ONBUILD COPY ./src/ /source/src/
+ONBUILD COPY ./Cargo.toml /source
+ONBUILD RUN ls -R /source
+ONBUILD RUN mkdir /app
+
+ONBUILD RUN ~/.cargo/bin/cargo test  --release
+ONBUILD RUN ~/.cargo/bin/cargo build --release
+
+# Copy the "interesting" files into /app.
+ONBUILD RUN find target/release \
+                -regextype egrep \
+                # The interesting binaries are all directly in ${BUILD_DIR}.
+                -maxdepth 1 \
+                # Well, binaries are executable.
+                -executable \
+                # Well, binaries are files.
+                -type f \
+                # Filter out tests.
+                ! -regex ".*\-[a-fA-F0-9]{16,16}$" \
+                # Copy the matching files into /app.
+                -exec cp {} /app \;
+
+ONBUILD RUN echo "The following files will be copied to the runtime image: $(ls /app)"

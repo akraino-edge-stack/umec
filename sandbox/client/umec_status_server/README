@@ -1,0 +1,24 @@
+The overall plan is the following:
+
+1. Make a builder container that has rust installed
+2. The builder mounts a local volume, compiles the given source code, and
+stores it in the local volume. This way we can compile the apps with the right
+versions
+3. The umec container will mount these apps and be able to run them
+
+The uMEC builder container works with 
+
+sudo buildah bud --file builder-Dockerfile --format docker --tag umec_builder ./
+
+The format must be docker to support the multi-stage build.
+
+After this, the umec_container can be built with
+
+sudo buildah bud --file umec-Dockerfile --format docker --tag umec_container ./
+
+To run it, use the magic
+
+sudo podman run --rm=true -it --name=umec --expose 3000 --privileged=true -v /var/run/containers/storage:/var/run/containers/storage -v /var/lib/containers/storage:/var/lib/containers/storage --storage-driver=overlay 33b5700f75b1 /bin/bash
+
+
+

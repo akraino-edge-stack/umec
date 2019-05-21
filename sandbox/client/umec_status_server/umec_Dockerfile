@@ -1,0 +1,23 @@
+FROM localhost/umec_builder as builder
+
+FROM docker.io/opensuse/tumbleweed
+COPY --from=builder /app /app
+
+RUN mkdir /app/templates
+RUN mkdir /app/static
+
+WORKDIR /app
+
+COPY ./templates/ /app/templates
+COPY ./static/ /app/static
+
+RUN grep -qF localhost /etc/hosts || echo "127.0.0.1 localhost" >> /etc/hosts
+
+EXPOSE 3000
+
+RUN zypper --non-interactive install curl containerd iptables
+
+RUN curl -L https://github.com/rancher/k3s/releases/download/v0.5.0/k3s -o /bin/k3s
+RUN chmod u+x /bin/k3s
+
+CMD /app/umec_status_server 3000
