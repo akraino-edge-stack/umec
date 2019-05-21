@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and        #
 # limitations under the License.                                             #
 ##############################################################################
+
 This program is written in Rust, so you need the Rust compiler for it. The easiest is to install rustup and then do
 
 	rustup update
@@ -26,7 +27,7 @@ To compile, run
 
 	cargo build
 
-To run the progrm, run
+To run the program, run
 
 	cargo run
 
@@ -34,4 +35,4 @@ To install locally,
 
 	cargo install
 
-
+There is also a Dockerfile for running the web server.
