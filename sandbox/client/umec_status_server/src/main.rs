@@ -15,7 +15,7 @@ extern crate rocket_contrib;
 use rocket_contrib::serve::StaticFiles;
 use rocket_contrib::templates::Template;
 
-#[get("/index.html")]
+#[get("/")]
 fn index() -> NamedFile {
     NamedFile::open("./templates/index.html").unwrap()
 }
@@ -95,6 +95,7 @@ fn main() {
     rocket::custom(config).mount("/css", StaticFiles::from("./static/css"))
                           .mount("/images", StaticFiles::from("./static/images"))
                           .mount("/", routes![config,index,pods,])
+                          .mount("/index.html", routes![index,])
                           .attach(Template::fairing())
                           .launch();
 }
