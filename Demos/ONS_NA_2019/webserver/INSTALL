@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ##############################################################################
 # Copyright (c) 2019 Nokia.                                                  #
 #                                                                            #
@@ -14,6 +15,8 @@
 # limitations under the License.                                             #
 ##############################################################################
 
+=======
+>>>>>>> 5109d8f... Initial commit for ONS NA 2019 demo web server
 This program is written in Rust, so you need the Rust compiler for it. The easiest is to install rustup and then do
 
 	rustup update
@@ -27,7 +30,11 @@ To compile, run
 
 	cargo build
 
+<<<<<<< HEAD
 To run the program, run
+=======
+To run the progrm, run
+>>>>>>> 5109d8f... Initial commit for ONS NA 2019 demo web server
 
 	cargo run
 
@@ -35,4 +42,8 @@ To install locally,
 
 	cargo install
 
+<<<<<<< HEAD
 There is also a Dockerfile for running the web server.
+=======
+
+>>>>>>> 5109d8f... Initial commit for ONS NA 2019 demo web server

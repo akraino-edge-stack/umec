@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ##############################################################################
 # Copyright (c) 2019 Nokia.                                                  #
 #                                                                            #
@@ -13,6 +14,8 @@
 # See the License for the specific language governing permissions and        #
 # limitations under the License.                                             #
 ##############################################################################
+=======
+>>>>>>> 5109d8f... Initial commit for ONS NA 2019 demo web server
 [package]
 name = "hello-rocket"
 version = "0.1.0"

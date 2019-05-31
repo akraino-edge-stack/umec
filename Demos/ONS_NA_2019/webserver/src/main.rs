@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // ##############################################################################
 // # Copyright (c) 2019 Nokia.                                                  #
 // #                                                                            #
@@ -14,6 +15,8 @@
 // # limitations under the License.                                             #
 // ##############################################################################
 
+=======
+>>>>>>> 5109d8f... Initial commit for ONS NA 2019 demo web server
 #![feature(proc_macro_hygiene, decl_macro)]
 
 #[macro_use] extern crate rocket;
