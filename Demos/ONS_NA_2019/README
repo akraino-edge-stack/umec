@@ -25,7 +25,7 @@ it, to make it easy to find and show the information. The InfluxDB needs to
 be running locally on port 8086, although it would be easy to change that.
 Easiest way to get started with InfluxDB is to run it in a container:
 
-docker run -p 8086:8086 influxdb --name influx
+docker run -p 8086:8086 --name=influx influxdb
 
 The full story is in https://hub.docker.com/_/influxdb.
 
