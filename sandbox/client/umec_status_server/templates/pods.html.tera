@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html><head> 
+	<meta charset = "UTF-8"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> µMEC </title>
+	<link rel="stylesheet" type="text/css" href="/css/styles.css"/> 
+        <link rel="icon" type="image/png" href="/images/favicon.ico">
+	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
+<nav class="bd-tabs">
+	<div class="tabs">
+		<ul>
+    			<li> <a href="config.html">Config</a> </li>
+     			<li class=is-active> <a href="pods.html">Pods</a> </li>
+    		</ul>
+  	</div>
+</nav>
+        
+<section class="section">
+	<div class="container">
+		<H1 class="title"> µMEC pods are </H1>
+</section>
+
+<div class="tile is-ancestor">
+	<div class="tile is-parent is-2">
+		<article class="tile is-child box">
+			<p class="title"> Pod1 </p>
+		</article>
+	</div>
+	<div class="tile is-parent is-10">
+		<article class="tile is-child box">
+			<p class="content"> Contents of Pod1 </p>
+		</article>
+	</div>
+</div>
+
+<div class="tile is-ancestor">
+	<div class="tile is-parent is-2">
+		<article class="tile is-child box">
+			<p class="title"> Pod2 </p>
+		</article>
+	</div>
+	<div class="tile is-parent is-10">
+		<article class="tile is-child box">
+			<p class="content"> Contents of Pod2 </p>
+		</article>
+	</div>
+</div>
+
+</body>
+</html>

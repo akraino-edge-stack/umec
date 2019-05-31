@@ -1,0 +1,16 @@
+[package]
+name = "umec_status_server"
+version = "0.1.0"
+authors = ["Tapio Tallgren <tapio.tallgren@nokia.com>"]
+edition = "2018"
+
+[dependencies]
+rocket = "0.4.1"
+serde = { version = "1.0.91", features = ["derive"] }
+structopt = "0.2.15"
+
+[dependencies.rocket_contrib]
+version = "0.4.1"
+default-features = false
+features = ["tera_templates", "serve"]
+
