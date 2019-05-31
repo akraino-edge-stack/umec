@@ -15,7 +15,7 @@ extern crate rocket_contrib;
 use rocket_contrib::serve::StaticFiles;
 use rocket_contrib::templates::Template;
 
-#[get("/index.html")]
+#[get("/")]
 fn index() -> NamedFile {
     NamedFile::open("./templates/index.html").unwrap()
 }
