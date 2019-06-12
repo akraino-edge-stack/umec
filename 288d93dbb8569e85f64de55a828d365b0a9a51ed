@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d0c79000_099fcf4a",
+        "filename": "sandbox/client/provision.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 146
+      },
+      "writtenOn": "2019-06-12T07:29:40Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "range": {
+        "startLine": 45,
+        "startChar": 42,
+        "endLine": 45,
+        "endChar": 43
+      },
+      "revId": "288d93dbb8569e85f64de55a828d365b0a9a51ed",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1cfcafaf_b8d4fc4f",
+        "filename": "sandbox/client/provision.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 146
+      },
+      "writtenOn": "2019-06-12T07:29:40Z",
+      "side": 1,
+      "message": "This could be implemented without awk (if the expected output is compatible with export_and_add_to_profile) e.g. like this:\n\n\"$(kubectl get svc -n openfaas gateway-external --output\u003djsonpath\u003d\u0027{.spec.ports[*].nodePort}\u0027\"",
+      "revId": "288d93dbb8569e85f64de55a828d365b0a9a51ed",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
