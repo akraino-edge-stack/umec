@@ -1,0 +1,21 @@
+[package]
+name = "mec11"
+version = "0.1.0"
+authors = ["Tapio Tallgren <tapio.tallgren@nokia.com>"]
+edition = "2018"
+
+[dependencies]
+actix-rt = "0.2.2"
+actix-web = "1.0.0"
+actix-files = "0.1.1"
+actix-session = "0.2.0"
+serde_urlencoded = "0.6.1"
+futures = "0.1.25"
+env_logger = "0.5"
+bytes = "0.4"
+lazy_static = "1.4.0"
+rand = "0.7.2"
+reqwest = "0.9.22"
+
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
