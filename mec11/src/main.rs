@@ -36,27 +36,6 @@ fn favicon() -> Result<fs::NamedFile> {
     Ok(fs::NamedFile::open("static/favicon.ico")?)
 }
 
-/// simple index handler
-#[get("/welcome")]
-fn welcome(session: Session, req: HttpRequest) -> Result<HttpResponse> {
-    println!("{:?}", req);
-
-    // session
-    let mut counter = 1;
-    if let Some(count) = session.get::<i32>("counter")? {
-        println!("SESSION value: {}", count);
-        counter = count + 1;
-    }
-
-    // set counter to session
-    session.set("counter", counter)?;
-
-    // response
-    Ok(HttpResponse::build(StatusCode::OK)
-        .content_type("text/html; charset=utf-8")
-        .body(include_str!("../static/welcome.html")))
-}
-
 /// 404 handler
 fn p404() -> Result<fs::NamedFile> {
     Ok(fs::NamedFile::open("static/404.html")?.set_status_code(StatusCode::NOT_FOUND))
@@ -301,8 +280,6 @@ fn main() -> io::Result<()> {
             .wrap(middleware::Logger::default())
             // register favicon
             .service(favicon)
-            // register simple route, handle all methods
-            .service(welcome)
             // DNS rules
             .service(
                 web::resource("/mp1/v1/applications/{appInstanceId}/dns_rules")
