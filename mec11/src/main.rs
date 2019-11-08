@@ -182,8 +182,8 @@ fn get_services(req: web::HttpRequest, service_data: web::Data<AllServices>) -> 
         }
     }
     HttpResponse::Ok() 
-        .content_type("text/normal")
-        .body(&format!("{:?}", res))
+        .content_type("application/json")
+        .body(serde_json::to_string(&res).unwrap())
 }
 
 fn post_service(_req: web::HttpRequest, 
