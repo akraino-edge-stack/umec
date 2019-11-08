@@ -278,6 +278,9 @@ fn main() -> io::Result<()> {
             .wrap(CookieSession::signed(&[0; 32]).secure(false))
             // enable logger - always register actix-web Logger middleware last
             .wrap(middleware::Logger::default())
+            .wrap(middleware::DefaultHeaders::new()
+                .header("Access-Control-Allow-Origin", "*")
+            )
             // register favicon
             .service(favicon)
             // DNS rules
@@ -343,9 +346,9 @@ fn main() -> io::Result<()> {
                     ),
             )
     })
-    .bind("127.0.0.1:8080")?
+    .bind("0.0.0.0:8081")?
     .start();
 
-    println!("Starting http server: 127.0.0.1:8080");
+    println!("Starting http server: 0.0.0.0:8081");
     sys.run()
 }
