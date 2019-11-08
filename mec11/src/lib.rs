@@ -95,30 +95,31 @@ pub struct CategoryRef {
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct TransportInfo {
-    id: String,
+    pub id: String,
     // The identifier of this transport.
 
-    name: String,
+    pub name: String,
     // The name of this transport.
 
-    description: Option<String>,
+    pub description: Option<String>,
     // Human-readable description of this transport.
     
-    r#type: TransportTypes,
+    pub r#type: TransportTypes,
     // Type of the transport.
 
-    protocol: String,
+    pub protocol: String,
     // The name of the protocol used. Shall be set to "HTTP"
     // for a REST API.
 
-    version: String,
+    pub version: String,
     // The version of the protocol used.
 
-    endpoint: EndPointInfo,
+    pub endpoint: EndPointInfo,
     // Information about the endpoint to access the transport.
 
-    security: SecurityInfo,
+    // security: SecurityInfo,
     // Information about the security used by the transport.
+    // NB: Not supported yet
 
     // implSpecificInfo Not specified 0..1 Additional implementation specific details of the
     // transport. 
