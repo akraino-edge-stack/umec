@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: mec-ui
+   labels:
+     app: mec-ui
+   namespace: "mec-ui"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mec-ui
+  template:
+    metadata:
+      labels:
+        app: mec-ui
+    spec:
+      containers:
+      - name: mec-ui
+        image: henrycarlson/mec-ui:arm64-v1
+        ports:
+        - containerPort: 80
+      nodeSelector:
+        kubernetes.io/arch: arm64
