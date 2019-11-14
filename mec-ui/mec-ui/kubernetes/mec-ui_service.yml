@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mec-ui
+    component: mec-ui
+  name: mec-ui
+  namespace: "umec"
+spec:
+  type: NodePort
+  ports:
+    - nodePort: 32003
+      port: 6660
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: mec-ui
