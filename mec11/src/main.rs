@@ -30,6 +30,9 @@ use actix_web::{
 use rand::Rng;
 // use serde::{Deserialize, Serialize}; 
 
+const DNS_STORE: &'static str = "dns_map.json";
+const SERVICE_STORE: &'static str = "service_map.json";
+
 /// favicon handler
 #[get("/favicon")]
 fn favicon() -> Result<fs::NamedFile> {
@@ -51,8 +54,8 @@ fn p404() -> Result<fs::NamedFile> {
 //     // services: HashMap<ServiceID, ServiceInfo>,
 // }
 
-type AllDnsRules = RwLock<HashMap<ApplicationID, HashMap<DnsRuleID, DnsRule>>>;
-type AllServices = RwLock<HashMap<ServiceID, ServiceInfo>>;
+type AllDnsRules = RwLock<mec11::DnsMap>;
+type AllServices = RwLock<mec11::ServiceMap>;
 
 fn get_dns_rules(data: web::Data<AllDnsRules>, path: web::Path<(String,)>) -> 
     HttpResponse {
@@ -119,6 +122,10 @@ fn put_dns_rule(path: web::Path<(String, String,)>,
     let mut r : HashMap<DnsRuleID, DnsRule> = HashMap::new();
     r.insert(path.1.clone(), d);
     (*m).insert(path.0.clone(), r);
+    mec11::store::write_store(DNS_STORE, (*m).clone())
+        .unwrap_or_else(|err| {
+            eprintln!("Store write failed!: {}", err);
+        });
     HttpResponse::Ok()
         .content_type("application/json")
         .body(format!("{:?}",&form_data))
@@ -235,6 +242,10 @@ fn post_service(_req: web::HttpRequest,
             all_services.insert(random_id, service_info.clone());
         }
     }
+    mec11::store::write_store(SERVICE_STORE, (*all_services).clone())
+        .unwrap_or_else(|err| {
+            eprintln!("Store write failed!: {}", err);
+        });
     HttpResponse::Ok()
         .content_type("application/json")
         .body(serde_json::to_string(&service_info).unwrap())
@@ -263,10 +274,14 @@ fn main() -> io::Result<()> {
     env::set_var("RUST_LOG", "actix_web=debug");
     env_logger::init();
     let sys = actix_rt::System::new("basic-example");
-    let e: HashMap<ApplicationID, HashMap<DnsRuleID, DnsRule>> = HashMap::new();
+    let e: HashMap<ApplicationID, HashMap<DnsRuleID, DnsRule>> =
+        mec11::store::read_store(DNS_STORE)
+            .unwrap_or(HashMap::new());
     // let m = Mec11Data { dns_rules: e, }; 
     // let d = web::Data::new(RwLock::new(m));
-    let s: HashMap<ServiceID, ServiceInfo> = HashMap::new();
+    let s: HashMap<ServiceID, ServiceInfo> =
+        mec11::store::read_store(SERVICE_STORE)
+            .unwrap_or(HashMap::new());
     let service_data: web::Data<AllServices> = web::Data::new(RwLock::new(s));
     let dns_data: web::Data<AllDnsRules> = web::Data::new(RwLock::new(e));
 
@@ -306,8 +321,7 @@ fn main() -> io::Result<()> {
                     .route(web::put().to(put_dns_rule)),
             )
             .service(web::resource("/mp1/v1/services")
-                    .route(web::get().to(get_services)))
-            .service(web::resource("/mp1/v1/services")
+                    .route(web::get().to(get_services))
                     .route(web::post().to(post_service)))
             .service(web::resource("/mp1/v1/timing/current_time")
                      .route(web::get().to(get_current_time)))
