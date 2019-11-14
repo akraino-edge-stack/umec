@@ -1,0 +1,2 @@
+FROM tobi312/rpi-nginx:latest
+COPY dist /var/www/html
