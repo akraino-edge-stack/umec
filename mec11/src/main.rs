@@ -9,11 +9,11 @@ extern crate serde_urlencoded;
 
 // Std
 use std::{env, io};
-// use std::net::{IpAddr, Ipv4Addr, Ipv6Addr, };
 use std::vec::Vec;
 use std::collections::{HashMap, };
 use std::sync::RwLock;
 use std::time::SystemTime;
+use std::path::Path;
 
 use mec11::models::{DnsRule, DnsRuleID, ApplicationID, ProblemDetails,
                     ServiceInfo, ServiceID, QueryTypes, CurrentTime,
@@ -29,8 +29,9 @@ use actix_web::{
 use rand::Rng;
 // use serde::{Deserialize, Serialize}; 
 
-const DNS_STORE: &'static str = "dns_map.json";
-const SERVICE_STORE: &'static str = "service_map.json";
+const DATASTORE: &'static str = "datastore";
+const DNS_STORE: &'static str = "datastore/dns_map.json";
+const SERVICE_STORE: &'static str = "datastore/service_map.json";
 
 /// favicon handler
 #[get("/favicon")]
@@ -272,12 +273,13 @@ fn get_current_time() -> HttpResponse {
 fn main() -> io::Result<()> {
     env::set_var("RUST_LOG", "actix_web=debug");
     env_logger::init();
-    let sys = actix_rt::System::new("basic-example");
+    let sys = actix_rt::System::new("mec11");
+    if !Path::new(DATASTORE).is_dir() {
+        std::fs::create_dir(DATASTORE)?;
+    }
     let e: HashMap<ApplicationID, HashMap<DnsRuleID, DnsRule>> =
         mec11::store::read_store(DNS_STORE)
             .unwrap_or(HashMap::new());
-    // let m = Mec11Data { dns_rules: e, }; 
-    // let d = web::Data::new(RwLock::new(m));
     let s: HashMap<ServiceID, ServiceInfo> =
         mec11::store::read_store(SERVICE_STORE)
             .unwrap_or(HashMap::new());
