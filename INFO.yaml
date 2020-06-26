@@ -1,0 +1,53 @@
+---
+project: 'umec'
+project_creation_date: '2019-12-16'
+project_category: 'blueprint'
+lifecycle_state: 'Incubation'
+project_lead: &akraino_validation_ptl
+    name: 'Tapio Tallgren'
+    email: 'tapio.tallgren@nokia.com'
+    id: 'TapioTallgren'
+    company: 'Nokia'
+    timezone: 'Europe/Helsinki'
+primary_contact: *akraino_validation_ptl
+issue_tracking:
+    type: 'jira'
+    url: 'https://jira.akraino.org/projects/'
+    key: 'umec'
+mailing_list:
+    type: 'groups.io'
+    url: 'blueprints@lists.akraino.org'
+    tag: '[#umec]'
+realtime_discussion:
+    type: 'irc'
+    server: 'freenode.net'
+    channel: '#akraino'
+meetings:
+    - type: 'gotomeeting+irc'
+      agenda: 'https://wiki.akraino.org/display/'
+      url: ''
+      server: 'freenode.net'
+      channel: '#akraino'
+      repeats: ''
+      time: ''
+repositories:
+    - umec
+committers:
+    - <<: *akraino_validation_ptl
+    - name: 'Ferenc Szekely'
+      email: 'ferenc.szekely@suse.com'
+      company: SUSE'
+      id: 'fszekely'
+      timezone: 'Europe/Helsinki'
+    - name: 'Bob Monkman'
+      email: 'bob.monkman@gmail.com'
+      company: 'att'
+      id: 'romolf99'
+      timezone: 'America/San_Francisco'
+tsc:
+    # yamllint disable rule:line-length
+    approval: 'January 31, 2019 TSC meeting https://docs.google.com/document/d/1gJssBhVL2cu6qtP7ZxgRl5LjrQzW1tproIUEw4bOCfw/edit'
+    changes:
+        - type: ''
+          name: ''
+          link: ''
