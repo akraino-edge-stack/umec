@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e2dd5701_ef9bb2a0",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2020-06-29T18:52:42Z",
+      "side": 1,
+      "message": "This anchor, and all references to it, should be \"akraino_umec_ptl\".",
+      "range": {
+        "startLine": 6,
+        "startChar": 15,
+        "endLine": 6,
+        "endChar": 37
+      },
+      "revId": "b82a2a809b78e43f0b2cbe0b34bfba8b78789a41",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "825bc724_f1521cc2",
+        "filename": "INFO.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 133
+      },
+      "writtenOn": "2020-06-29T18:52:42Z",
+      "side": 1,
+      "message": "This is not a valid TZ. Please use America/Los_Angeles.",
+      "range": {
+        "startLine": 46,
+        "startChar": 17,
+        "endLine": 46,
+        "endChar": 38
+      },
+      "revId": "b82a2a809b78e43f0b2cbe0b34bfba8b78789a41",
+      "serverId": "4cada01b-0314-4fe0-84a1-f9ddc89863f9",
+      "unresolved": true
+    }
+  ]
+}
